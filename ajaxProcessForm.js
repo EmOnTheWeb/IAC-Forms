@@ -18,7 +18,6 @@ function getXMLHTTPRequest() {
 }
 
 function storeGasCartEnquiryValues() {
-	console.log('iamhere'); 
 	
 	var fields = ''; 
 	var fields = '&gasAmount='; 
@@ -93,6 +92,28 @@ encodeURIComponent(document.getElementById('repairInfo').getElementsByTagName('t
 return fields; 
 }
 
+function storeModulesExchangeValues() {
+
+	var exchangeVals = ''; 
+	
+	exchangeVals += '&' + document.getElementById('maDevice').name + '=' + encodeURIComponent(document.getElementById('maDevice').value); 
+	exchangeVals += '&' + document.getElementById('serialExch').name + '=' + encodeURIComponent(document.getElementById('serialExch').value); 
+	
+	if(document.getElementById('calibration').checked) {
+		exchangeVals += '&'+ document.getElementById('calibration').name + '=' + encodeURIComponent(document.getElementById('calibration').value); 
+	}
+		
+	if(document.getElementById('malfunction').checked) {
+	
+		exchangeVals += '&'+ document.getElementById('malfunction').name + '=' + encodeURIComponent(document.getElementById('malfunction').value); 
+		
+		exchangeVals += '&' + document.getElementById('malfunctionField').name + '=' + 
+encodeURIComponent(document.getElementById('malfunctionField').value); 
+	}
+	
+	return exchangeVals; 
+}
+
 function contactValues() {
 
 	var contactValues = ''; 
@@ -121,6 +142,9 @@ function processForm() {
 	}
 	if(document.getElementById('requestTopics').value == 'gasCartOrder') {
 		fields += storeGasCartEnquiryValues(); 
+	}
+	if(document.getElementById('requestTopics').value == 'modulesExchange') {
+		fields += storeModulesExchangeValues(); 
 	}
 		
 	fields += contactValues(); 
